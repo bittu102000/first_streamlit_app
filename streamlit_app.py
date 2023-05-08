@@ -35,15 +35,27 @@ streamlit.header("Fruityvice Fruit Advice!")
 # write your own comment - what does this do?
 #streamlit.dataframe(fruityvice_normalized)
 import snowflake.connector
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
+#my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+#my_cur = my_cnx.cursor()
 #fruit_select = streamlit.text_input('what fruit would you like to see')
-my_cur.execute("select * from fruit_load_list")
-my_data_row = my_cur.fetchall()
+#my_cur.execute("select * from fruit_load_list")
+#my_data_row = my_cur.fetchall()
 streamlit.header("Fruit Load List contains:")
-streamlit.dataframe(my_data_row)
+def get_fruit_load_list():
+  with mycnx.cursor() as mycur:
+    mycur.execute("select * from fruit_load_list)
+    return mycur.fetchall()
 
-my_cur.execute("insert into fruit_load_list values ('from streamlit')")
+if streamlit.button('Get Fruit Load List'):
+    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+    mt_data_rows = get_fruit_load_list()
+    streamlit.dataframe(my_data_rows)
+            
+
+
+#streamlit.dataframe(my_data_row)
+
+#my_cur.execute("insert into fruit_load_list values ('from streamlit')")
 
 
 
