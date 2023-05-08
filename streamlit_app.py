@@ -45,7 +45,7 @@ def get_fruit_load_list():
   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
   my_cur = my_cnx.cursor()
   my_cur.execute("select * from fruit_load_list")
-  return my_cur.fetch_all()
+  return my_cur.fetchall()
   
 
 if streamlit.button('Get Fruit Load List Now'):
