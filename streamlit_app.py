@@ -37,7 +37,7 @@ streamlit.dataframe(fruityvice_normalized)
 import snowflake.connector
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
-fruit_select = streamlit.text_input('what fruit would you like to see','orange')
+fruit_select = streamlit.text_input('what fruit would you like to see')
 my_cur.execute("select * from fruit_load_list where fruit_name="+fruit_select)
 my_data_row = my_cur.fetchall()
 streamlit.header("Fruit Load List contains:")
